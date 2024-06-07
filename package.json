@@ -3,6 +3,7 @@
   "displayName": "global-replace",
   "description": "global find and replace",
   "version": "0.0.1",
+  "publisher": "xiaopanli",
   "engines": {
     "vscode": "^1.89.0"
   },
@@ -26,6 +27,11 @@
       }
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lxp621/global-replace.git"
+  },
+  "license": "MIT",
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
