@@ -40,19 +40,23 @@ export function activate(context: vscode.ExtensionContext) {
     const inputRes: ResultType = JSON.parse(result);
     // console.log('files=', files);
     for (const file of files) {
-      const document = await vscode.workspace.openTextDocument(file);
-      const text = document.getText();
-      // 遍历map依次替换所有文件中的关键字
-      Object.keys(inputRes).forEach(async (key) => {
-        const regex = new RegExp(key, 'g');
-        const newText = text.replace(regex, inputRes[key]);
-        const editor = new vscode.WorkspaceEdit();
-        editor.replace(file, new vscode.Range(document.positionAt(0), document.positionAt(text.length)), newText);
-        await vscode.workspace.applyEdit(editor);
-        await document.save();
-      });
+      try {
+        // 打开文本文件进行替换，不是文本文件则catch继续
+        const document = await vscode.workspace.openTextDocument(file);
+        const text = document.getText();
+        // 遍历map依次替换所有文件中的关键字
+        Object.keys(inputRes).forEach(async (key) => {
+          const regex = new RegExp(key, 'g');
+          const newText = text.replace(regex, inputRes[key]);
+          const editor = new vscode.WorkspaceEdit();
+          editor.replace(file, new vscode.Range(document.positionAt(0), document.positionAt(text.length)), newText);
+          await vscode.workspace.applyEdit(editor);
+          await document.save();
+        });
+      } catch (error) {
+        console.log('error=', error);
+      }
     }
-    
 	});
 
 	context.subscriptions.push(disposable);
