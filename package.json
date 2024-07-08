@@ -2,7 +2,7 @@
   "name": "global-replace",
   "displayName": "global-replace",
   "description": "global find and replace",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "publisher": "xiaopanli",
   "engines": {
     "vscode": "^1.89.0"
