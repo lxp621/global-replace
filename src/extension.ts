@@ -92,11 +92,7 @@ export function activate(context: vscode.ExtensionContext) {
               vscode.window.showErrorMessage(`Error reading file: ${err.message}`);
               return;
           }
-          const startTime = Date.now();
           await fileReplace(data);
-          const endTime = Date.now();
-          console.log(`fileReplace 方法运行时长: ${endTime - startTime} 毫秒`);
-
         });
       } else if (selected.value === 'custom') {
         const result = await vscode.window.showInputBox({
